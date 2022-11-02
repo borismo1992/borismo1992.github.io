@@ -1,1 +1,157 @@
-HEllo World!
+<!DOCTYPE html>
+<html>
+<body>
+
+<div class="wrapper">
+  <div class="full-screen-width">
+    <button class="button-1" id='btn1' onclick="play()">開始</button>
+    <img class="center" src="slide1.jpg">
+    <p id="countdown">15:00</p>
+  </div>
+    
+</div>
+
+
+
+<script>
+function play() {
+  document.getElementById('btn1').disabled = true;
+  function bell(){
+  var audio1 = new Audio('HKSGI_APPLICATION_bell.m4a');
+  audio1.play();
+}
+function chant(){
+  var audio2 = new Audio('chant_trim.mp3');
+  audio2.play();
+}
+function three(){
+  var three = new Audio('027.m4a');
+  three.play();
+}
+start();
+bell();
+setTimeout(bell, 2000);
+setTimeout(bell, 4000);
+setTimeout(three, 6000);
+setTimeout(chant,12500);
+setTimeout(bell, 895000);
+setTimeout(bell, 897000);
+setTimeout(bell, 899000);
+setTimeout(three, 901000);
+}
+
+let startingMin = 15;
+let time = startingMin * 60;
+var intervalID;
+
+const countdownEl = document.getElementById('countdown');
+
+function start(){
+  intervalID = setInterval(updateCountDown, 1000);
+}
+
+function stop() {
+  clearInterval(intervalID);
+}
+
+function updateCountDown(){
+  let minutes = Math.floor(time / 60);
+  let sec = time % 60;
+
+  sec = sec < 10 ? '0' + sec : sec;
+
+  countdownEl.innerHTML = `${minutes}:${sec}`;
+  time--;
+
+  if (minutes <= 0 && sec <= 0) {
+    stop();
+    document.getElementById('btn1').disabled = false;
+    countdownEl.innerHTML = '00:00';
+    time = startingMin * 60;
+  }
+}
+
+
+</script>
+
+</body>
+</html>
+<style>
+.button-1 {
+  background-color: #EA4C89;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  line-height: 20px;
+  list-style: none;
+  margin: 0;
+  outline: none;
+  padding: 10px 16px;
+  text-align: center;
+  text-decoration: none;
+  font-size: x-large;
+  transition: color 100ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 19%;
+  top: 8px;
+  left: 16px;
+  font-size: 18px;
+  position: absolute;
+  display: inline-block;
+}
+.wrapper {
+  position: relative;
+}
+.button-1:hover,
+.button-1:focus {
+  background-color: #F082AC;
+}
+.center {
+  display: inline-block;
+}
+
+.full-screen-width {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 100vw;
+  width: 100vw;
+}
+img { 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+  height: auto;
+}
+
+p {
+  display: inline-block;
+  background-color: lightskyblue;
+  border-radius: 8px;
+  border-style: none;
+  box-sizing: border-box;
+  font-weight: 500;
+  font-size: 50px;
+  text-align: center;
+  padding-top: 200px;
+  width: 20%;
+  height: 400px;
+  margin: 0;
+  font-family: 'Roboto', 'sans-serif';
+  color: white;
+  top: 50px;
+  right: auto;
+  left: auto;
+  position: absolute;
+}
+
+</style>
